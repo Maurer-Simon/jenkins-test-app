@@ -39,8 +39,11 @@ pipeline {
         }
     }
     post {
-        always {
-            junit 'testus/junit.xml'
+    always {
+        script {
+            echo "Workspace contents:"
+            sh "ls -la"
+            junit 'jest-results/junit.xml'
         }
     }
 }
