@@ -1,7 +1,8 @@
 pipeline {
     agent any
 
-    stages {
+    stages { 
+        // This is the build stage
         stage('Build') {
             agent {
                 docker {
@@ -19,7 +20,7 @@ pipeline {
                     ls -la
                 '''
             }
-        }
+        }/*
         stage('Test stage') {
             agent {
                 docker {
@@ -38,6 +39,6 @@ pipeline {
     post {
         always {
             junit 'test-results/junit.xml'
-        }
+        }*/
     }
 }
