@@ -20,6 +20,11 @@ pipeline {
                     ls -la
                 '''
             }
+            post {
+                always {
+                    junit 'test-results/junit.xml'
+        }
+    }
         }
         stage('E2E') {
             agent {
@@ -36,11 +41,6 @@ pipeline {
                     npx playwright test
                 '''
             }
-        }
-    }
-    post {
-        always {
-            junit 'jest-results/junit.xml'
         }
     }
 }
