@@ -21,6 +21,22 @@ pipeline {
                 '''
             }
         }
+        stage('Test') {
+            agent {
+                docker {
+                    image 'node:21-alpine'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                sh '''
+                    #test -f build/index.html
+                    npm test
+                '''
+            }
+        }
+
         stage('E2E') {
             agent {
                 docker {
@@ -39,12 +55,10 @@ pipeline {
         }
     }
     post {
-    always {
-        script {
+        always {
             echo "Workspace contents:"
             sh "ls -la"
             junit 'jest-results/junit.xml'
         }
     }
-}
 }
