@@ -20,18 +20,19 @@ pipeline {
                     ls -la
                 '''
             }
-        }/*
-        stage('Test stage') {
+        }
+        stage('E2E') {
             agent {
                 docker {
-                    image 'node:21-alpine'
+                    image 'mcr.microsoft.com/playwright:v1.43.0-jammy'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                    test -f build/index.html
-                    npm test
+                    npm install -g serve
+                    npx serve -s build 
+                    npx playwright test
                 '''
             }
         }
@@ -39,6 +40,6 @@ pipeline {
     post {
         always {
             junit 'test-results/junit.xml'
-        }*/
+        }
     }
 }
