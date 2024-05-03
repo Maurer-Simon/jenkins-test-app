@@ -63,7 +63,7 @@ pipeline {
                     }
                     post {
                         always {
-                            sh 'ls -la /var/jenkins_home/workspace/test-app/playwright-report'
+                            sh 'mkdir /var/jenkins_home/workspace/test-app/playwright-report'
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
                     }
