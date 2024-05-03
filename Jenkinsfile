@@ -39,6 +39,8 @@ pipeline {
                     }
                     post {
                         always {
+                            echo "Workspace contents:"
+                            sh "ls -la"
                             junit 'jest-results/junit.xml'
                         }
                     }
@@ -61,6 +63,8 @@ pipeline {
                     }
                     post {
                         always {
+                            echo "Workspace contents:"
+                            sh "ls -la"
                             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
                     }
