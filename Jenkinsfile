@@ -37,12 +37,12 @@ pipeline {
                             npm test
                         '''
                     }
-                }
-                post {
-                    always {
-                        echo "Workspace contents:"
-                        sh "ls -la"
-                        junit 'jest-results/junit.xml'
+                    post {
+                        always {
+                            echo "Workspace contents:"
+                            sh "ls -la"
+                            junit 'jest-results/junit.xml'
+                        }
                     }
                 }
 
